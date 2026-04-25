@@ -115,7 +115,7 @@ export function LandingPage(props: LandingPageProps) {
       </Section>
 
       {/* FAQ */}
-      <Section eyebrow="FAQ" title={<>Answers, <span className="text-aurora">fast</span>.</>}>
+      <Section eyebrow="FAQ" title="Answers, fast.">
         <FAQ items={props.faqs} />
       </Section>
 
