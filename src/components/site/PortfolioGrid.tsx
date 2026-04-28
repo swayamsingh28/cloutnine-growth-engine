@@ -87,8 +87,6 @@ function PortfolioTile({
     const v = videoRef.current;
     if (!v) return;
     if (hover) {
-      // Lazy: only set src on first hover
-      if (!v.src && item.type === "video") v.src = item.src;
       v.play().catch(() => {});
     } else {
       v.pause();
