@@ -8,9 +8,21 @@ type Props = {
 };
 
 export function PortfolioTabs({ data, initial = "cafe" }: Props) {
-  const [active, setActive] = useState<Industry>(initial);
+  // Fall back to the first industry that actually has items
+  const firstWithItems =
+    (INDUSTRIES.find((i) => data[i.slug]?.length > 0)?.slug as Industry) ??
+    initial;
+  const startIndustry: Industry =
+    data[initial]?.length > 0 ? initial : firstWithItems;
+
+  const [active, setActive] = useState<Industry>(startIndustry);
   const [visible, setVisible] = useState(true);
-  const [items, setItems] = useState<PortfolioItem[]>(data[initial]);
+  const [items, setItems] = useState<PortfolioItem[]>(data[startIndustry] ?? []);
+
+  if (import.meta.env.DEV) {
+    // eslint-disable-next-line no-console
+    console.log("[PortfolioTabs] data", data, "active", active, "items", items.length);
+  }
 
   // Smooth fade when switching categories
   useEffect(() => {
@@ -32,18 +44,23 @@ export function PortfolioTabs({ data, initial = "cafe" }: Props) {
       >
         {INDUSTRIES.map((ind) => {
           const isActive = ind.slug === active;
+          const count = data[ind.slug]?.length ?? 0;
+          const isEmpty = count === 0;
           return (
             <button
               key={ind.slug}
               type="button"
               role="tab"
               aria-selected={isActive}
-              onClick={() => setActive(ind.slug)}
+              disabled={isEmpty}
+              onClick={() => !isEmpty && setActive(ind.slug)}
               className={[
                 "relative pb-2 text-sm transition-colors duration-300 outline-none",
-                isActive
-                  ? "text-white"
-                  : "text-white/45 hover:text-white/80",
+                isEmpty
+                  ? "text-white/20 cursor-not-allowed"
+                  : isActive
+                    ? "text-white"
+                    : "text-white/45 hover:text-white/80",
               ].join(" ")}
             >
               {ind.label}
