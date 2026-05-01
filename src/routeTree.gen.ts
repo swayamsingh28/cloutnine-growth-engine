@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -42,6 +43,11 @@ const PricingRoute = PricingRouteImport.update({
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesRoute = PackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -167,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/industries/d2c-brands': typeof IndustriesD2cBrandsRoute
@@ -193,6 +200,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/industries/d2c-brands': typeof IndustriesD2cBrandsRoute
@@ -220,6 +228,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRouteWithChildren
   '/pricing': typeof PricingRoute
   '/industries/d2c-brands': typeof IndustriesD2cBrandsRoute
@@ -248,6 +257,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/case-studies'
     | '/contact'
+    | '/packages'
     | '/portfolio'
     | '/pricing'
     | '/industries/d2c-brands'
@@ -274,6 +284,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/case-studies'
     | '/contact'
+    | '/packages'
     | '/portfolio'
     | '/pricing'
     | '/industries/d2c-brands'
@@ -300,6 +311,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/case-studies'
     | '/contact'
+    | '/packages'
     | '/portfolio'
     | '/pricing'
     | '/industries/d2c-brands'
@@ -327,6 +339,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
+  PackagesRoute: typeof PackagesRoute
   PortfolioRoute: typeof PortfolioRouteWithChildren
   PricingRoute: typeof PricingRoute
   IndustriesD2cBrandsRoute: typeof IndustriesD2cBrandsRoute
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages': {
+      id: '/packages'
+      path: '/packages'
+      fullPath: '/packages'
+      preLoaderRoute: typeof PackagesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -562,6 +582,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
+  PackagesRoute: PackagesRoute,
   PortfolioRoute: PortfolioRouteWithChildren,
   PricingRoute: PricingRoute,
   IndustriesD2cBrandsRoute: IndustriesD2cBrandsRoute,
