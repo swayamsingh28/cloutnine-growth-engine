@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+
 import shot88 from "@/assets/portfolio/shot-88.png";
 import shot89 from "@/assets/portfolio/shot-89.png";
 import shot81 from "@/assets/portfolio/shot-81.png";
