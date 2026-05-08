@@ -1,6 +1,25 @@
 import { Link } from "@tanstack/react-router";
+import { Linkedin, Facebook, Instagram } from "lucide-react";
 import { SITE } from "@/lib/seo";
 import { LogoMark } from "@/components/site/Logo";
+
+const SOCIALS = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/cloutnine-in/?viewAsMember=true",
+    Icon: Linkedin,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/people/cloutninein/61576100464851/",
+    Icon: Facebook,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/cloutnine.in/",
+    Icon: Instagram,
+  },
+] as const;
 
 const SERVICES = [
   { to: "/services/social-media-marketing-mumbai", label: "Social Media Marketing" },
