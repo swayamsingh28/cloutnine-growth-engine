@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Outlet, Link, createRootRoute, HeadContent, useRouterState } from "@tanstack/react-router";
 
 import { Header } from "@/components/site/Header";
