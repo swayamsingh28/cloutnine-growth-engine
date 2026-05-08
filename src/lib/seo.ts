@@ -41,6 +41,32 @@ export const localBusinessSchema = {
   ],
 };
 
+export const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/favicon.png`,
+  email: SITE.email,
+  telephone: SITE.phone,
+  sameAs: [
+    "https://www.instagram.com/cloutnine",
+    "https://www.linkedin.com/company/cloutnine",
+  ],
+};
+
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  url: SITE.url,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE.url}/?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export function faqSchema(faqs: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",
